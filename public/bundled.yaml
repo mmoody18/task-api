@@ -4,7 +4,7 @@ info:
   version: 1.0.0
 servers:
   - url: http://localhost:3000
-    description: local servers
+    description: local server
   - url: https://task-api-3-d2sd.onrender.com
     description: render server
 tags:
@@ -20,7 +20,7 @@ paths:
         - name: completed
           in: query
           required: false
-          description: filter tasks by completion status
+          description: Filter tasks by completion status
           schema:
             type: boolean
             example: true
@@ -37,12 +37,12 @@ paths:
       summary: Create new task
       tags:
         - Tasks
-      requestBpdy:
+      requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: ../components/schemas/Task.yaml
+              $ref: '#/components/schemas/Task'
       responses:
         '201':
           description: Task created successfully
@@ -52,14 +52,38 @@ paths:
                 $ref: '#/components/schemas/Task'
         '400':
           $ref: '#/components/responses/BadRequest'
+  /tasks/{id}:
+    get:
+      summary: Get a task by ID
+      tags:
+        - Tasks
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Numeric ID of the task
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Task found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
 components:
   schemas:
     Task:
       type: object
       properties:
         id:
-          readOnly: true
           type: integer
+          readOnly: true
           example: 1
         title:
           type: string
@@ -67,6 +91,10 @@ components:
         completed:
           type: boolean
           example: false
+      required:
+        - id
+        - title
+        - completed
     ValidationError:
       type: object
       properties:
@@ -77,10 +105,29 @@ components:
           type: array
           items:
             type: string
+          example:
+            - ID must be a number
+      required:
+        - error
+        - details
+    NotFoundError:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Task not found
+      required:
+        - error
   responses:
     BadRequest:
-      description: Invalid input
+      description: Validation error
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ValidationError'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'

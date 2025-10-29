@@ -4,7 +4,7 @@ info:
   version: 1.0.0
 servers:
   - url: http://localhost:3000
-    description: local servers
+    description: local server
   - url: https://task-api-3-d2sd.onrender.com
     description: render server
 tags:
@@ -12,4 +12,19 @@ tags:
     description: task related endpoints
 paths:
   /tasks:
-    $ref: paths/tasks.yaml
+    $ref: ./paths/tasks.yaml
+  /tasks/{id}:
+    $ref: ./paths/tasks-id.yaml
+components:
+  schemas:
+    Task:
+      $ref: ./components/schemas/Task.yaml
+    ValidationError:
+      $ref: ./components/schemas/ValidationError.yaml
+    NotFoundError:
+      $ref: ./components/schemas/NotFoundError.yaml
+  responses:
+    BadRequest:
+      $ref: ./components/responses/BadRequest.yaml
+    NotFound:
+      $ref: ./components/responses/NotFound.yaml

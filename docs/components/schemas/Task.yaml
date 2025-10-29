@@ -1,8 +1,8 @@
 type: object
 properties:
   id:
-    readOnly: true
     type: integer
+    readOnly: true
     example: 1
   title:
     type: string
@@ -10,3 +10,4 @@ properties:
   completed:
     type: boolean
     example: false
+required: [id, title, completed]

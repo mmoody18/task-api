@@ -1,12 +1,11 @@
 get:
   summary: List all /tasks
-  tags:
-    - Tasks
+  tags: [Tasks]
   parameters:
     - name: completed
       in: query
       required: false
-      description: filter tasks by completion status
+      description: Filter tasks by completion status
       schema:
         type: boolean
         example: true
@@ -21,9 +20,8 @@ get:
               $ref: ../components/schemas/Task.yaml
 post:
   summary: Create new task
-  tags:
-    - Tasks
-  requestBpdy:
+  tags: [Tasks]
+  requestBody:
     required: true
     content:
       application/json:
