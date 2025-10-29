@@ -25,10 +25,11 @@
     "@prisma/client": "^6.18.0",
     "cors": "^2.8.5",
     "express": "^4.19.0",
-  "swagger-ui-express": "^5.0.0",
-  "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
+    "swagger-jsdoc": "^6.2.8",
     "express-validator": "^7.2.1",
-    "morgan": "^1.10.1"
+    "morgan": "^1.10.1",
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
