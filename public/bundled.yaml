@@ -93,8 +93,6 @@ components:
           example: false
       required:
         - id
-        - title
-        - completed
     ValidationError:
       type: object
       properties:
@@ -107,17 +105,12 @@ components:
             type: string
           example:
             - ID must be a number
-      required:
-        - error
-        - details
     NotFoundError:
       type: object
       properties:
         error:
           type: string
           example: Task not found
-      required:
-        - error
   responses:
     BadRequest:
       description: Validation error
