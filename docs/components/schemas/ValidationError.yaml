@@ -9,4 +9,4 @@ properties:
       type: string
     example:
       - ID must be a number
-required: [error, details]
+required: []

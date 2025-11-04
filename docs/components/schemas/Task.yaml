@@ -10,4 +10,4 @@ properties:
   completed:
     type: boolean
     example: false
-required: [id, title, completed]
+required: [id]
